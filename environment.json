@@ -1,0 +1,21 @@
+{
+  "env": {
+    "development": {
+      "host": "http://localhost:8712"
+    , "domain": "localhost:8712"
+    , "express": {
+        "port": 8712
+      }
+    , "redis": {
+        "host": "127.0.0.1"
+      , "port": "6379"
+      , "prefix": "dev.baseproj.sess"
+      }
+    , "mongodb": {
+        "host": "127.0.0.1"
+      , "port": 27017
+      , "db": "dev_baseproj"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "basecmd": {
+    "server": "./node_modules/basecmd/lib/server.js"
+  , "daemon": "./node_modules/basecmd/scripts/daemon.js"
+  , "views": [
+      "./lib/views"
+    , "./lib/views/admin"
+    ]
+  , "public": [
+      "./bower_components"
+    , "./public"
+    ]
+  , "controllers": [
+      "./lib/controllers"
+    , "./node_modules/basecmd/lib/controllers"
+    ]
+  , "helpers": [
+      "./lib/helpers"
+    , "./node_modules/basecmd/lib/helpers"
+    ]
+  , "models": [
+      "./lib/models"
+    , "./node_modules/basecmd/lib/models"
+    ]
+  }
+}
