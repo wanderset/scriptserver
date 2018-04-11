@@ -1,1 +1,1 @@
-/mnt/F/Dropbox/code/scriptserver/node_modules/basecmd/scripts/daemon.js
+/home/ubuntu/scriptserver/node_modules/basecmd/scripts/daemon.js

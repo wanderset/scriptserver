@@ -1,1 +1,1 @@
-/mnt/F/Dropbox/code/scriptserver/node_modules/basecmd/scripts/install-log.js
+/home/ubuntu/scriptserver/node_modules/basecmd/scripts/install-log.js
