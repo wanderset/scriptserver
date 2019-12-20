@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Backing up mongodb databases [$1] to S3 and compressing to [$3/$2.tar.gz]"
+
+TEMPPATH=`mktemp -d --tmpdir=/efs/database-backups`
+TEMPGZ=`mktemp -d --tmpdir=/efs/database-backups`
+mongodump -d $4 -o "$TEMPPATH" && rm -rf "$TEMPGZ/$2.tar.gz" && GZIP=-9 tar -zcf "$TEMPGZ/$2.tar.gz" "$TEMPPATH/"
+rm -rf "$TEMPPATH"
+/home/ubuntu/scripts/s3cmd put --multipart-chunk-size-mb=5000 "$TEMPGZ/$2.tar.gz" s3://$3/$2.tar.gz
+rm -rf "$TEMPGZ"
+
+echo "...done"
