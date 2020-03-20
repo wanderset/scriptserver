@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Backing up redis database [$1] to S3 and compressing to [$3/$2.tar.gz]"
+
+TEMPPATH=`mktemp -d`
+TEMPGZ=`mktemp -d`
+redis-cli -h $1 save
+sudo cp /var/lib/redis/dump.rdb "$TEMPPATH"
+sudo chown -R ubuntu:ubuntu "$TEMPPATH"
+rm -rf "$TEMPGZ/$2.tar.gz" && GZIP=-9 tar -zcvf "$TEMPGZ/$2.tar.gz" "$TEMPPATH/"
+rm -rf "$TEMPPATH"
+/home/ubuntu/scripts/s3cmd put "$TEMPGZ/$2.tar.gz" s3://$3/$2.tar.gz
+rm -rf "$TEMPGZ"
+
+echo "...done"
