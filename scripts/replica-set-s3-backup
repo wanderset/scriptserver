@@ -10,9 +10,9 @@ do
     FILENAME="$DATE-$i-production-mongodb.tar.gz"
     S3PATH="backup.fazeclan.com/databases/$1"
     TEMPPATH=`mktemp -d --tmpdir=/efs/database-backups`
-    mongodump -d dev_$i -o "$TEMPPATH" && rm -rf "$FILENAME" && GZIP=-9 tar -zcf "$FILENAME" "$(basename $TEMPPATH)"
+    mongodump -d $i -o "$TEMPPATH" && rm -rf "$FILENAME" && echo "Starting zipping dump" && GZIP=-9 tar -zcf "$FILENAME" "$(basename $TEMPPATH)"
     rm -rf "$TEMPPATH"
-    /home/ubuntu/scripts/s3cmd put --multipart-chunk-size-mb=5000 "$FILENAME" s3://$S3PATH/$FILENAME
+    /usr/bin/s3cmd put --multipart-chunk-size-mb=5000 "$FILENAME" s3://$S3PATH/$FILENAME
     rm -rf "$FILENAME"
 
     echo "$FILENAME uploaded to $S3PATH/$FILENAME"
